@@ -288,6 +288,10 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     */
     open var placeholderFont: UIFont?
     
+    /**
+     Number of hierarchies of scrollview to control
+     */
+    open var numberOfHierarchy = 1
     
     ///--------------------------
     /// MARK: UITextView handling
@@ -1011,16 +1015,19 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         var superView = textFieldView.superviewOfClassType(UIScrollView.self) as? UIScrollView
         
         //Getting UIScrollView whose scrolling is enabled.    //  (Bug ID: #285)
+        var count = 1
         while let view = superView {
-            
             if (view.isScrollEnabled) {
-                superScrollView = view
-                break
+                if (count == numberOfHierarchy) {
+                    superScrollView = view
+                    break
+                }
+                else {
+                    count += 1
+                }
             }
-            else {
-                //  Getting it's superScrollView.   //  (Enhancement ID: #21, #24)
-                superView = view.superviewOfClassType(UIScrollView.self) as? UIScrollView
-            }
+            //  Getting it's superScrollView.   //  (Enhancement ID: #21, #24)
+            superView = view.superviewOfClassType(UIScrollView.self) as? UIScrollView
         }
         
         //If there was a lastScrollView.    //  (Bug ID: #34)
@@ -1089,14 +1096,18 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                     
                     var tempScrollView = scrollView.superviewOfClassType(UIScrollView.self) as? UIScrollView
                     var nextScrollView : UIScrollView? = nil
+                    var count = 1
                     while let view = tempScrollView {
                         
                         if (view.isScrollEnabled) {
-                            nextScrollView = view
-                            break
-                        } else {
-                            tempScrollView = view.superviewOfClassType(UIScrollView.self) as? UIScrollView
+                            if (count == numberOfHierarchy) {
+                                nextScrollView = view
+                                break
+                            }
+                            count += 1
                         }
+                        
+                        tempScrollView = view.superviewOfClassType(UIScrollView.self) as? UIScrollView
                     }
                     
                     //Getting lastViewRect.
