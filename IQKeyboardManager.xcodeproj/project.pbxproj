@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C1D987E1F752A6400F5C2EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D987D1F752A6400F5C2EA /* UIKit.framework */; };
+		4C1D98801F752A6A00F5C2EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D987F1F752A6A00F5C2EA /* Foundation.framework */; };
+		4C1D98821F752A7600F5C2EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D98811F752A7600F5C2EA /* CoreGraphics.framework */; };
+		4C1D98841F752A7E00F5C2EA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D98831F752A7E00F5C2EA /* QuartzCore.framework */; };
+		4C1D98871F752ACC00F5C2EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D98811F752A7600F5C2EA /* CoreGraphics.framework */; };
+		4C1D98881F752AD200F5C2EA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D98831F752A7E00F5C2EA /* QuartzCore.framework */; };
 		4C68CB1E1CB5779300F7286E /* IQPreviousNextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C68CB1C1CB5779300F7286E /* IQPreviousNextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C68CB1F1CB5779300F7286E /* IQPreviousNextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68CB1D1CB5779300F7286E /* IQPreviousNextView.m */; };
+		4CC1D5951F7E84A5007595D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D987D1F752A6400F5C2EA /* UIKit.framework */; };
+		4CC1D5961F7E84AB007595D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D987F1F752A6A00F5C2EA /* Foundation.framework */; };
 		4CD2C4D81C5A63A300975A7A /* IQNSArray+Sort.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD2C4B51C5A63A300975A7A /* IQNSArray+Sort.h */; };
 		4CD2C4D91C5A63A300975A7A /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2C4B61C5A63A300975A7A /* IQNSArray+Sort.m */; };
 		4CD2C4DA1C5A63A300975A7A /* IQUIScrollView+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD2C4B71C5A63A300975A7A /* IQUIScrollView+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,7 +39,7 @@
 		4CD2C4EB1C5A63A300975A7A /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2C4CB1C5A63A300975A7A /* IQTextView.m */; };
 		4CD2C4EC1C5A63A300975A7A /* IQBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD2C4CD1C5A63A300975A7A /* IQBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CD2C4ED1C5A63A300975A7A /* IQBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2C4CE1C5A63A300975A7A /* IQBarButtonItem.m */; };
-		4CD2C4EE1C5A63A300975A7A /* IQTitleBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD2C4CF1C5A63A300975A7A /* IQTitleBarButtonItem.h */; };
+		4CD2C4EE1C5A63A300975A7A /* IQTitleBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD2C4CF1C5A63A300975A7A /* IQTitleBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CD2C4EF1C5A63A300975A7A /* IQTitleBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2C4D01C5A63A300975A7A /* IQTitleBarButtonItem.m */; };
 		4CD2C4F01C5A63A300975A7A /* IQToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD2C4D11C5A63A300975A7A /* IQToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4CD2C4F11C5A63A300975A7A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD2C4D21C5A63A300975A7A /* IQToolbar.m */; };
@@ -59,6 +67,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C1D987D1F752A6400F5C2EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4C1D987F1F752A6A00F5C2EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4C1D98811F752A7600F5C2EA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4C1D98831F752A7E00F5C2EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4C68CB1C1CB5779300F7286E /* IQPreviousNextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQPreviousNextView.h; sourceTree = "<group>"; };
 		4C68CB1D1CB5779300F7286E /* IQPreviousNextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQPreviousNextView.m; sourceTree = "<group>"; };
 		4CD2C4A61C5A615600975A7A /* IQKeyboardManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IQKeyboardManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +131,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C1D98841F752A7E00F5C2EA /* QuartzCore.framework in Frameworks */,
+				4C1D98821F752A7600F5C2EA /* CoreGraphics.framework in Frameworks */,
+				4C1D98801F752A6A00F5C2EA /* Foundation.framework in Frameworks */,
+				4C1D987E1F752A6400F5C2EA /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,12 +142,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC1D5961F7E84AB007595D9 /* Foundation.framework in Frameworks */,
+				4CC1D5951F7E84A5007595D9 /* UIKit.framework in Frameworks */,
+				4C1D98881F752AD200F5C2EA /* QuartzCore.framework in Frameworks */,
+				4C1D98871F752ACC00F5C2EA /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C1D987C1F752A6400F5C2EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C1D98831F752A7E00F5C2EA /* QuartzCore.framework */,
+				4C1D98811F752A7600F5C2EA /* CoreGraphics.framework */,
+				4C1D987F1F752A6A00F5C2EA /* Foundation.framework */,
+				4C1D987D1F752A6400F5C2EA /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4CD2C49C1C5A615600975A7A = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +170,7 @@
 				4CD597141D1C5EDD00AB28D3 /* IQKeyboardManagerSwift */,
 				4CD2C4F61C5A63DF00975A7A /* Supporting Files */,
 				4CD2C4A71C5A615600975A7A /* Products */,
+				4C1D987C1F752A6400F5C2EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -383,7 +415,7 @@
 		4CD2C49D1C5A615600975A7A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = IQKeyboardManager;
 				TargetAttributes = {
 					4CD2C4A51C5A615600975A7A = {
@@ -487,14 +519,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -536,14 +574,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -575,6 +619,7 @@
 		4CD2C4AF1C5A615600975A7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -593,6 +638,7 @@
 		4CD2C4B01C5A615600975A7A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_MODULES_AUTOLINK = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -612,6 +658,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_MODULES_AUTOLINK = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -625,7 +672,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -633,6 +680,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_MODULES_AUTOLINK = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -645,7 +693,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Iftekhar.IQKeyboardManagerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

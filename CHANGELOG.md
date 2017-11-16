@@ -1,4 +1,37 @@
-## master (xx-xx-xxxx)
+## master (dd-mm-yyyy)
+
+## 5.0.0 (19-09-2017 | 28 days)
+
+#### Bugfixes:
+- Fixed an issue where custom bar button actions wasn't not passing UITextField/UITextView object to method.
+
+#### Features:
+- Added **shouldIgnoreScrollingAdjustment** property in UIScrollView category to prevent scrollView to scroll to adjust textField position. This will be useful if there are nested UIScrollView are having and we should like to scroll an specific one to autoscroll to correct position.
+
+#### Improvements:
+- Converted project to support **swift4**, with **backward compatibility** of **swift3.2** and **swift 3.0**.
+- Migrated from **#import** statements to **@import**.
+
+#### Deprecations and Removed:
+- **Removed localizable.strings** files from Bundle since it's no longer useful.
+
+## 4.0.13 (22-08-2017 | 3 days)
+
+#### Bugfixes:
+- Fixed an issue preventing to build project
+- Fixed an issue where **keyboard toolbar** start displaying text from left with **iOS11**.
+
+## 4.0.12 (19-08-2017 | 23 days) (Breaking changes)
+
+#### Bugfixes:
+- Fixed some text alignment issue with IQTextView
+- Fixed an issue where **keyboard toolbar** wasn't displaying properly with **iOS11**.
+- Fixed an out of bound index crash happening with swift version.
+
+#### Improvements:
+- Renamed **topMostController** to **topMostWindowController** due to a swift conflict
+
+## 4.0.11 (27-07-2017 | 1 month 27 days)
 
 #### Bugfixes:
 
@@ -8,6 +41,7 @@
 
 #### Improvements:
 - Splitted storyboard into multiple storyboard to improve demo performance.
+- Added brief flow diagram for quick understanding.
 
 #### Deprecations and Removed:
 - Removed **isAskingCanBecomeFirstResponder** because this no longer useful now.

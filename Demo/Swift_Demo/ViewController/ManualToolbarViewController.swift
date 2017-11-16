@@ -22,22 +22,24 @@ class ManualToolbarViewController : UIViewController, UIPopoverPresentationContr
         super.viewDidLoad()
         
         textField1.addPreviousNextDoneOnKeyboardWithTarget(self, previousAction: #selector(self.previousAction(_:)), nextAction: #selector(self.nextAction(_:)), doneAction: #selector(self.doneAction(_:)), shouldShowPlaceholder: true)
-        textField1.setEnablePrevious(false, isNextEnabled: true)
-        
+        textField1.keyboardToolbar.previousBarButton.isEnabled = false;
+        textField1.keyboardToolbar.nextBarButton.isEnabled = true;
+
         textField2.addPreviousNextDoneOnKeyboardWithTarget(self, previousAction: #selector(self.previousAction(_:)), nextAction: #selector(self.nextAction(_:)), doneAction: #selector(self.doneAction(_:)), shouldShowPlaceholder: true)
-        textField2.setEnablePrevious(true, isNextEnabled: false)
+        textField2.keyboardToolbar.previousBarButton.isEnabled = true;
+        textField2.keyboardToolbar.nextBarButton.isEnabled = false;
 
         textView3.addPreviousNextDoneOnKeyboardWithTarget(self, previousAction: #selector(self.previousAction(_:)), nextAction: #selector(self.nextAction(_:)), doneAction: #selector(self.doneAction(_:)), shouldShowPlaceholder: true)
 
-        textField4.setTitleTarget(self, action: #selector(self.titleAction(_:)))
-        textField4.placeholderText = "Saved Passwords"
+        textField4.keyboardToolbar.titleBarButton.setTarget(self, action: #selector(self.titleAction(_:)))
+        textField4.toolbarPlaceholder = "Saved Passwords"
         textField4.addDoneOnKeyboardWithTarget(self, action: #selector(self.doneAction(_:)), shouldShowPlaceholder: true)
 
         textField5.inputAccessoryView = UIView()
     }
 
     
-    func previousAction(_ sender : UITextField!) {
+    @objc func previousAction(_ sender : UITextField!) {
         
         if (textField2.isFirstResponder)
         {
@@ -49,7 +51,7 @@ class ManualToolbarViewController : UIViewController, UIPopoverPresentationContr
         }
     }
     
-    func nextAction(_ sender : UITextField!) {
+    @objc func nextAction(_ sender : UITextField!) {
         
         if (textField1.isFirstResponder)
         {
@@ -61,11 +63,11 @@ class ManualToolbarViewController : UIViewController, UIPopoverPresentationContr
         }
     }
     
-    func doneAction(_ sender : UITextField!) {
+    @objc func doneAction(_ sender : UITextField!) {
         self.view.endEditing(true)
     }
 
-    func titleAction(_ sender : UIButton) {
+    @objc func titleAction(_ sender : UIButton) {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
