@@ -41,8 +41,11 @@
     self.searchController.searchBar.delegate = self;
     [self.searchController.searchBar sizeToFit];
     
-    self.tableView.tableHeaderView = self.searchController.searchBar;
-    self.definesPresentationContext = YES;
+    if (@available(iOS 11.0, *)) {
+        self.navigationItem.searchController = self.searchController;
+    } else {
+        self.tableView.tableHeaderView = self.searchController.searchBar;
+    }
 }
 
 - (void)searchForText:(NSString *)searchText scope:(NSInteger)scopeOption

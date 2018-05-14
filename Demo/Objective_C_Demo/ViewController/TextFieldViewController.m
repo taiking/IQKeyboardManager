@@ -20,6 +20,12 @@
 
 #pragma mark - View lifecycle
 
+-(void)dealloc
+{
+    textField3 = nil;
+    dropDownTextField = nil;
+}
+
 -(void)previousAction:(UITextField*)textField
 {
     NSLog(@"%@",NSStringFromSelector(_cmd));
@@ -130,11 +136,6 @@
 -(void)prepareForPopoverPresentation:(UIPopoverPresentationController *)popoverPresentationController
 {
     [self.view endEditing:YES];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
 }
 
 - (BOOL)shouldAutorotate

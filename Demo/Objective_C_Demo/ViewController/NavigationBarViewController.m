@@ -22,6 +22,7 @@
 -(void)dealloc
 {
     returnKeyHandler = nil;
+    textField3 = nil;
 }
 
 - (void)viewDidLoad
@@ -67,12 +68,12 @@
     [self.view endEditing:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotate
 {
     return YES;
 }
 
-- (BOOL)shouldAutorotate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     return YES;
 }
