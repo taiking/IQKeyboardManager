@@ -582,25 +582,6 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             //Play Input Click Sound.
             UIDevice.current.playInputClick()
         }
-        
-        if canGoPrevious == true {
-            
-            if let textFieldRetain = _textFieldView {
-                let isAcceptAsFirstResponder = goPrevious()
-                
-                var invocation = barButton.invocation
-                //Handling search bar special case
-                do {
-                    if let searchBar = textFieldRetain.searchBar() {
-                        invocation = searchBar.keyboardToolbar.previousBarButton.invocation;
-                    }
-                }
-
-                if isAcceptAsFirstResponder {
-                    invocation?.invoke(from: textFieldRetain)
-                }
-            }
-        }
     }
     
     /**	nextAction. */
