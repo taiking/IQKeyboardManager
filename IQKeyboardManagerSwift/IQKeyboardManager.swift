@@ -640,23 +640,6 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             //Play Input Click Sound.
             UIDevice.current.playInputClick()
         }
-        
-        if let textFieldRetain = _textFieldView {
-            //Resign textFieldView.
-            let isResignedFirstResponder = resignFirstResponder()
-            
-            var invocation = barButton.invocation
-            //Handling search bar special case
-            do {
-                if let searchBar = textFieldRetain.searchBar() {
-                    invocation = searchBar.keyboardToolbar.doneBarButton.invocation;
-                }
-            }
-
-            if isResignedFirstResponder {
-                invocation?.invoke(from: textFieldRetain)
-            }
-        }
     }
     
     /** Resigning on tap gesture.   (Enhancement ID: #14)*/
