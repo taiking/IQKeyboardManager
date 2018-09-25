@@ -18,14 +18,14 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
     "UISound handling",
     "IQKeyboardManager Debug"]
     
-    let keyboardManagerProperties = [["Enable", "Keyboard Distance From TextField", "Prevent Showing Bottom Blank Space"],
+    let keyboardManagerProperties = [["Enable", "Keyboard Distance From TextField"],
     ["Enable AutoToolbar","Toolbar Manage Behaviour","Should Toolbar Uses TextField TintColor","Should Show TextField Placeholder","Placeholder Font","Toolbar Tint Color","Toolbar Done BarButtonItem Image","Toolbar Done Button Text"],
     ["Override Keyboard Appearance","UIKeyboard Appearance"],
     ["Should Resign On Touch Outside"],
     ["Should Play Input Clicks"],
     ["Debugging logs in Console"]]
     
-    let keyboardManagerPropertyDetails = [["Enable/Disable IQKeyboardManager","Set keyboard distance from textField","Prevent to show blank space between UIKeyboard and View"],
+    let keyboardManagerPropertyDetails = [["Enable/Disable IQKeyboardManager","Set keyboard distance from textField"],
     ["Automatic add the IQToolbar on UIKeyboard","AutoToolbar previous/next button managing behaviour","Uses textField's tintColor property for IQToolbar","Add the textField's placeholder text on IQToolbar","UIFont for IQToolbar placeholder text","Override toolbar tintColor property","Replace toolbar done button text with provided image","Override toolbar done button text"],
     ["Override the keyboardAppearance for all UITextField/UITextView","All the UITextField keyboardAppearance is set using this property"],
     ["Resigns Keyboard on touching outside of UITextField/View"],
@@ -42,80 +42,73 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
     /**  UIKeyboard Handling    */
     @objc func enableAction (_ sender: UISwitch) {
         
-        IQKeyboardManager.sharedManager().enable = sender.isOn
+        IQKeyboardManager.shared.enable = sender.isOn
         
-        self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.fade)
+        self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
     }
     
     @objc func keyboardDistanceFromTextFieldAction (_ sender: UIStepper) {
         
-        IQKeyboardManager.sharedManager().keyboardDistanceFromTextField = CGFloat(sender.value)
+        IQKeyboardManager.shared.keyboardDistanceFromTextField = CGFloat(sender.value)
         
-        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: UITableViewRowAnimation.none)
-    }
-    
-    @objc func preventShowingBottomBlankSpaceAction (_ sender: UISwitch) {
-        
-        IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = sender.isOn
-        
-        self.tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.fade)
+        self.tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .none)
     }
     
     /**  IQToolbar handling     */
     @objc func enableAutoToolbarAction (_ sender: UISwitch) {
         
-        IQKeyboardManager.sharedManager().enableAutoToolbar = sender.isOn
+        IQKeyboardManager.shared.enableAutoToolbar = sender.isOn
         
-        self.tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.fade)
+        self.tableView.reloadSections(IndexSet(integer: 1), with: .fade)
     }
     
     @objc func shouldToolbarUsesTextFieldTintColorAction (_ sender: UISwitch) {
         
-        IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = sender.isOn
+        IQKeyboardManager.shared.shouldToolbarUsesTextFieldTintColor = sender.isOn
     }
     
     @objc func shouldShowTextFieldPlaceholder (_ sender: UISwitch) {
         
-        IQKeyboardManager.sharedManager().shouldShowToolbarPlaceholder = sender.isOn
+        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = sender.isOn
         
-        self.tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.fade)
+        self.tableView.reloadSections(IndexSet(integer: 1), with: .fade)
     }
     
     @objc func toolbarDoneBarButtonItemImage (_ sender: UISwitch) {
         
         if sender.isOn {
-            IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemImage = UIImage(named:"IQButtonBarArrowDown")
+            IQKeyboardManager.shared.toolbarDoneBarButtonItemImage = UIImage(named:"IQButtonBarArrowDown")
         } else {
-            IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemImage = nil
+            IQKeyboardManager.shared.toolbarDoneBarButtonItemImage = nil
         }
         
-        self.tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.fade)
+        self.tableView.reloadSections(IndexSet(integer: 1), with: .fade)
     }
 
     /**  "Keyboard appearance overriding    */
     @objc func overrideKeyboardAppearanceAction (_ sender: UISwitch) {
         
-        IQKeyboardManager.sharedManager().overrideKeyboardAppearance = sender.isOn
+        IQKeyboardManager.shared.overrideKeyboardAppearance = sender.isOn
         
-        self.tableView.reloadSections(IndexSet(integer: 2), with: UITableViewRowAnimation.fade)
+        self.tableView.reloadSections(IndexSet(integer: 2), with: .fade)
     }
     
     /**  Resign first responder handling    */
     @objc func shouldResignOnTouchOutsideAction (_ sender: UISwitch) {
         
-        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = sender.isOn
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = sender.isOn
     }
     
     /**  Sound handling         */
     @objc func shouldPlayInputClicksAction (_ sender: UISwitch) {
         
-        IQKeyboardManager.sharedManager().shouldPlayInputClicks = sender.isOn
+        IQKeyboardManager.shared.shouldPlayInputClicks = sender.isOn
     }
     
     /**  Debugging         */
     @objc func enableDebugging (_ sender: UISwitch) {
         
-        IQKeyboardManager.sharedManager().enableDebugging = sender.isOn
+        IQKeyboardManager.shared.enableDebugging = sender.isOn
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -123,7 +116,12 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        #if swift(>=4.2)
+        return UITableView.automaticDimension
+        #else
         return UITableViewAutomaticDimension
+        #endif
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -135,7 +133,7 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
         switch (section)
         {
         case 0:
-            if IQKeyboardManager.sharedManager().enable == true {
+            if IQKeyboardManager.shared.enable == true {
                 
                 let properties = keyboardManagerProperties[section]
                 
@@ -145,9 +143,9 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
             }
             
         case 1:
-            if IQKeyboardManager.sharedManager().enableAutoToolbar == false {
+            if IQKeyboardManager.shared.enableAutoToolbar == false {
                 return 1
-            } else if IQKeyboardManager.sharedManager().shouldShowToolbarPlaceholder == false {
+            } else if IQKeyboardManager.shared.shouldShowToolbarPlaceholder == false {
                 return 4
             } else {
                 let properties = keyboardManagerProperties[section]
@@ -156,7 +154,7 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
             
         case 2:
             
-            if IQKeyboardManager.sharedManager().overrideKeyboardAppearance == true {
+            if IQKeyboardManager.shared.overrideKeyboardAppearance == true {
                 
                 let properties = keyboardManagerProperties[section]
                 
@@ -196,10 +194,10 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().enable
+                cell.switchEnable.isOn = IQKeyboardManager.shared.enable
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.enableAction(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.enableAction(_:)), for: .valueChanged)
                 
                 return cell
                
@@ -210,29 +208,13 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.stepper.value = Double(IQKeyboardManager.sharedManager().keyboardDistanceFromTextField)
-                cell.labelStepperValue.text = NSString(format: "%.0f", IQKeyboardManager.sharedManager().keyboardDistanceFromTextField) as String
+                cell.stepper.value = Double(IQKeyboardManager.shared.keyboardDistanceFromTextField)
+                cell.labelStepperValue.text = NSString(format: "%.0f", IQKeyboardManager.shared.keyboardDistanceFromTextField) as String
                 
-                cell.stepper.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.stepper.addTarget(self, action: #selector(self.keyboardDistanceFromTextFieldAction(_:)), for: UIControlEvents.valueChanged)
-                
-                return cell
-                
-            case 2:
-                
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchTableViewCell") as! SwitchTableViewCell
-                cell.switchEnable.isEnabled = true
-                
-                cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
-                cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
-                
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace
-                
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.preventShowingBottomBlankSpaceAction(_:)), for: UIControlEvents.valueChanged)
+                cell.stepper.removeTarget(nil, action: nil, for: .allEvents)
+                cell.stepper.addTarget(self, action: #selector(self.keyboardDistanceFromTextFieldAction(_:)), for: .valueChanged)
                 
                 return cell
-                
             default:
                 break
             }
@@ -250,10 +232,10 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().enableAutoToolbar
+                cell.switchEnable.isOn = IQKeyboardManager.shared.enableAutoToolbar
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.enableAutoToolbarAction(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.enableAutoToolbarAction(_:)), for: .valueChanged)
                 
                 return cell
 
@@ -274,10 +256,10 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor
+                cell.switchEnable.isOn = IQKeyboardManager.shared.shouldToolbarUsesTextFieldTintColor
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.shouldToolbarUsesTextFieldTintColorAction(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.shouldToolbarUsesTextFieldTintColorAction(_:)), for: .valueChanged)
                 
                 return cell
                 
@@ -289,10 +271,10 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().shouldShowToolbarPlaceholder
+                cell.switchEnable.isOn = IQKeyboardManager.shared.shouldShowToolbarPlaceholder
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.shouldShowTextFieldPlaceholder(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.shouldShowTextFieldPlaceholder(_:)), for: .valueChanged)
                 
                 return cell
                 
@@ -311,7 +293,7 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
-                cell.colorPickerTextField.selectedColor = IQKeyboardManager.sharedManager().toolbarTintColor
+                cell.colorPickerTextField.selectedColor = IQKeyboardManager.shared.toolbarTintColor
                 cell.colorPickerTextField.tag = 15
                 cell.colorPickerTextField.delegate = self
                 
@@ -324,11 +306,11 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
-                cell.arrowImageView.image = IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemImage
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemImage != nil
+                cell.arrowImageView.image = IQKeyboardManager.shared.toolbarDoneBarButtonItemImage
+                cell.switchEnable.isOn = IQKeyboardManager.shared.toolbarDoneBarButtonItemImage != nil
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.toolbarDoneBarButtonItemImage(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.toolbarDoneBarButtonItemImage(_:)), for: .valueChanged)
                 
                 return cell
 
@@ -338,7 +320,7 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
-                cell.textField.text = IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemText
+                cell.textField.text = IQKeyboardManager.shared.toolbarDoneBarButtonItemText
                 cell.textField.tag = 17
                 cell.textField.delegate = self
                 
@@ -360,10 +342,10 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().overrideKeyboardAppearance
+                cell.switchEnable.isOn = IQKeyboardManager.shared.overrideKeyboardAppearance
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.overrideKeyboardAppearanceAction(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.overrideKeyboardAppearanceAction(_:)), for: .valueChanged)
                 
                 return cell
 
@@ -393,10 +375,10 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().shouldResignOnTouchOutside
+                cell.switchEnable.isOn = IQKeyboardManager.shared.shouldResignOnTouchOutside
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.shouldResignOnTouchOutsideAction(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.shouldResignOnTouchOutsideAction(_:)), for: .valueChanged)
                 
                 return cell
                 
@@ -416,10 +398,10 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().shouldPlayInputClicks
+                cell.switchEnable.isOn = IQKeyboardManager.shared.shouldPlayInputClicks
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.shouldPlayInputClicksAction(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.shouldPlayInputClicksAction(_:)), for: .valueChanged)
                 
                 return cell
                 
@@ -439,10 +421,10 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                 cell.labelTitle.text = keyboardManagerProperties[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 cell.labelSubtitle.text = keyboardManagerPropertyDetails[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                 
-                cell.switchEnable.isOn = IQKeyboardManager.sharedManager().enableDebugging
+                cell.switchEnable.isOn = IQKeyboardManager.shared.enableDebugging
                 
-                cell.switchEnable.removeTarget(nil, action: nil, for: UIControlEvents.allEvents)
-                cell.switchEnable.addTarget(self, action: #selector(self.enableDebugging(_:)), for: UIControlEvents.valueChanged)
+                cell.switchEnable.removeTarget(nil, action: nil, for: .allEvents)
+                cell.switchEnable.addTarget(self, action: #selector(self.enableDebugging(_:)), for: .valueChanged)
                 
                 return cell
                 
@@ -467,9 +449,9 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
             let color = colorAttributes["color"] as! UIColor
             
             if color.isEqual(UIColor.clear) {
-                IQKeyboardManager.sharedManager().toolbarTintColor = nil
+                IQKeyboardManager.shared.toolbarTintColor = nil
             } else {
-                IQKeyboardManager.sharedManager().toolbarTintColor = color
+                IQKeyboardManager.shared.toolbarTintColor = color
             }
         }
     }
@@ -477,7 +459,7 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
     func textFieldDidEndEditing(_ textField: UITextField) {
 
         if textField.tag == 17 {
-            IQKeyboardManager.sharedManager().toolbarDoneBarButtonItemText = textField.text?.characters.count != 0 ? textField.text : nil
+            IQKeyboardManager.shared.toolbarDoneBarButtonItemText = textField.text?.isEmpty == false ? textField.text : nil
         }
     }
     
@@ -501,17 +483,17 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                         
                         controller.title = "Toolbar Manage Behaviour"
                         controller.options = ["IQAutoToolbar By Subviews","IQAutoToolbar By Tag","IQAutoToolbar By Position"]
-                        controller.selectedIndex = IQKeyboardManager.sharedManager().toolbarManageBehaviour.hashValue
+                        controller.selectedIndex = IQKeyboardManager.shared.toolbarManageBehaviour.hashValue
                         
                     } else if (selectedIndexPath as NSIndexPath).section == 1 && (selectedIndexPath as NSIndexPath).row == 4 {
                         
                         controller.title = "Fonts"
                         controller.options = ["Bold System Font","Italic system font","Regular"]
-                        controller.selectedIndex = IQKeyboardManager.sharedManager().toolbarManageBehaviour.hashValue
+                        controller.selectedIndex = IQKeyboardManager.shared.toolbarManageBehaviour.hashValue
                         
                         let fonts = [UIFont.boldSystemFont(ofSize: 12),UIFont.italicSystemFont(ofSize: 12),UIFont.systemFont(ofSize: 12)]
                         
-                        if let placeholderFont = IQKeyboardManager.sharedManager().placeholderFont {
+                        if let placeholderFont = IQKeyboardManager.shared.placeholderFont {
                             
                             if let index = fonts.index(of: placeholderFont) {
                                 
@@ -523,7 +505,7 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
                         
                         controller.title = "Keyboard Appearance"
                         controller.options = ["UIKeyboardAppearance Default","UIKeyboardAppearance Dark","UIKeyboardAppearance Light"]
-                        controller.selectedIndex = IQKeyboardManager.sharedManager().keyboardAppearance.hashValue
+                        controller.selectedIndex = IQKeyboardManager.shared.keyboardAppearance.hashValue
                     }
                 }
             }
@@ -535,14 +517,14 @@ class SettingsViewController: UITableViewController, OptionsViewControllerDelega
         if let selectedIndexPath = selectedIndexPathForOptions {
             
             if (selectedIndexPath as NSIndexPath).section == 1 && (selectedIndexPath as NSIndexPath).row == 1 {
-                IQKeyboardManager.sharedManager().toolbarManageBehaviour = IQAutoToolbarManageBehaviour(rawValue: index)!
+                IQKeyboardManager.shared.toolbarManageBehaviour = IQAutoToolbarManageBehaviour(rawValue: index)!
             } else if (selectedIndexPath as NSIndexPath).section == 1 && (selectedIndexPath as NSIndexPath).row == 4 {
                 
                 let fonts = [UIFont.boldSystemFont(ofSize: 12),UIFont.italicSystemFont(ofSize: 12),UIFont.systemFont(ofSize: 12)]
-                IQKeyboardManager.sharedManager().placeholderFont = fonts[index]
+                IQKeyboardManager.shared.placeholderFont = fonts[index]
             } else if (selectedIndexPath as NSIndexPath).section == 2 && (selectedIndexPath as NSIndexPath).row == 1 {
                 
-                IQKeyboardManager.sharedManager().keyboardAppearance = UIKeyboardAppearance(rawValue: index)!
+                IQKeyboardManager.shared.keyboardAppearance = UIKeyboardAppearance(rawValue: index)!
             }
         }
     }

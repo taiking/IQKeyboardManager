@@ -32,6 +32,12 @@ class TextFieldViewController: UIViewController, UITextViewDelegate, UIPopoverPr
         print("doneAction")
     }
 
+    deinit {
+        textField3 = nil
+        textView1 = nil
+        dropDownTextField = nil
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,7 +76,7 @@ class TextFieldViewController: UIViewController, UITextViewDelegate, UIPopoverPr
         if (self.presentingViewController != nil)
         {
             buttonPush.isHidden = true
-            buttonPresent.setTitle("Dismiss", for:UIControlState())
+            buttonPresent.setTitle("Dismiss", for:.normal)
         }
     }
     
