@@ -1022,10 +1022,8 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                         count += 1
                     }
                 }
-                else {
-                    //  Getting it's superScrollView.   //  (Enhancement ID: #21, #24)
-                    superView = view.superviewOfClassType(UIScrollView.self) as? UIScrollView
-                }
+                //  Getting it's superScrollView.   //  (Enhancement ID: #21, #24)
+                superView = view.superviewOfClassType(UIScrollView.self) as? UIScrollView
             }
             
             //If there was a lastScrollView.    //  (Bug ID: #34)
@@ -1106,9 +1104,8 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                                     break
                                 }
                                 count += 1
-                            } else {
-                                tempScrollView = view.superviewOfClassType(UIScrollView.self) as? UIScrollView
                             }
+                            tempScrollView = view.superviewOfClassType(UIScrollView.self) as? UIScrollView
                         }
                         
                         //Getting lastViewRect.
