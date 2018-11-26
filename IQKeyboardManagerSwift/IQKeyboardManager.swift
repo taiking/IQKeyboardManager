@@ -168,12 +168,6 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     }
 
     /**
-    Prevent keyboard manager to slide up the rootView to more than keyboard height. Default is YES.
-    */
-    @available(*,deprecated, message: "Due to change in core-logic of handling distance between textField and keyboard distance, this tweak is no longer needed and things will just work out of the box for most of the cases.")
-    @objc public var preventShowingBottomBlankSpace = true
-    
-    /**
     Returns the default singleton instance.
     */
     @objc public class var shared: IQKeyboardManager {
@@ -301,16 +295,6 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     /**
     If YES, then it add the textField's placeholder text on IQToolbar. Default is YES.
     */
-    @available(*,deprecated, message: "This is renamed to `shouldShowToolbarPlaceholder` for more clear naming.")
-    @objc public var shouldShowTextFieldPlaceholder: Bool {
-        
-        set {
-            shouldShowToolbarPlaceholder =  newValue
-        }
-        get {
-            return shouldShowToolbarPlaceholder
-        }
-    }
     @objc public var shouldShowToolbarPlaceholder = true
 
     /**
@@ -598,7 +582,7 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 var invocation = barButton.invocation
                 //Handling search bar special case
                 do {
-                    if let searchBar = textFieldRetain.searchBar() {
+                    if let searchBar = textFieldRetain.textFieldSearchBar() {
                         invocation = searchBar.keyboardToolbar.previousBarButton.invocation
                     }
                 }
@@ -627,7 +611,7 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 var invocation = barButton.invocation
                 //Handling search bar special case
                 do {
-                    if let searchBar = textFieldRetain.searchBar() {
+                    if let searchBar = textFieldRetain.textFieldSearchBar() {
                         invocation = searchBar.keyboardToolbar.nextBarButton.invocation
                     }
                 }
@@ -655,7 +639,7 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             var invocation = barButton.invocation
             //Handling search bar special case
             do {
-                if let searchBar = textFieldRetain.searchBar() {
+                if let searchBar = textFieldRetain.textFieldSearchBar() {
                     invocation = searchBar.keyboardToolbar.doneBarButton.invocation
                 }
             }
@@ -713,28 +697,6 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     If YES, then calls 'setNeedsLayout' and 'layoutIfNeeded' on any frame update of to viewController's view.
     */
     @objc public var layoutIfNeededOnUpdate = false
-
-    ///-----------------------------------------------
-    /// MARK: InteractivePopGestureRecognizer handling
-    ///-----------------------------------------------
-    
-    /**
-     If YES, then always consider UINavigationController.view begin point as {0,0}, this is a workaround to fix a bug #464 because there are no notification mechanism exist when UINavigationController.view.frame gets changed internally.
-     */
-    @available(*,deprecated, message: "Due to change in core-logic of handling distance between textField and keyboard distance, this tweak is no longer needed and things will just work out of the box for most of the cases. This property will be removed in future release.")
-    @objc public var shouldFixInteractivePopGestureRecognizer = true
-    
-#if swift(>=3.2)
-    ///----------------
-    /// MARK: Safe Area
-    ///----------------
-
-    /**
-     If YES, then library will try to adjust viewController.additionalSafeAreaInsets to automatically handle layout guide. Default is NO.
-     */
-    @available(*,deprecated, message: "Due to change in core-logic of handling distance between textField and keyboard distance, this safe area tweak is no longer needed and things will just work out of the box regardless of constraint pinned with safeArea/layoutGuide/superview. This property will be removed in future release.")
-    @objc public var canAdjustAdditionalSafeAreaInsets = false
-#endif
 
     ///------------------------------------
     /// MARK: Class Level disabling methods
@@ -984,7 +946,7 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             //Maintain keyboardDistanceFromTextField
             var specialKeyboardDistanceFromTextField = textFieldView.keyboardDistanceFromTextField
             
-            if let searchBar = textFieldView.searchBar() {
+            if let searchBar = textFieldView.textFieldSearchBar() {
                 
                 specialKeyboardDistanceFromTextField = searchBar.keyboardDistanceFromTextField
             }
