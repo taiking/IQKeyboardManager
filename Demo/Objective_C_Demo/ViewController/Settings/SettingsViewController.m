@@ -43,7 +43,7 @@
                       @"IQKeyboardManager Debug"];
 
     
-    keyboardManagerProperties = @[@[@"Enable", @"Keyboard Distance From TextField", @"Prevent Showing Bottom Blank Space"],
+    keyboardManagerProperties = @[@[@"Enable", @"Keyboard Distance From TextField"],
                                   @[@"Enable AutoToolbar",@"Toolbar Manage Behaviour",@"Should Toolbar Uses TextField TintColor",@"Should Show TextField Placeholder",@"Placeholder Font",@"Toolbar Tint Color",@"Toolbar Done BarButtonItem Image",@"Toolbar Done Button Text"],
                                   @[@"Override Keyboard Appearance",@"UIKeyboard Appearance"],
                                   @[@"Should Resign On Touch Outside"],
@@ -51,7 +51,7 @@
                                   @[@"Debugging logs in Console"]];
 
     
-    keyboardManagerPropertyDetails = @[@[@"Enable/Disable IQKeyboardManager",@"Set keyboard distance from textField",@"Prevent to show blank space between UIKeyboard and View"],
+    keyboardManagerPropertyDetails = @[@[@"Enable/Disable IQKeyboardManager",@"Set keyboard distance from textField"],
                                        @[@"Automatic add the IQToolbar on UIKeyboard",@"AutoToolbar previous/next button managing behaviour",@"Uses textField's tintColor property for IQToolbar",@"Add the textField's placeholder text on IQToolbar",@"UIFont for IQToolbar placeholder text",@"Override toolbar tintColor property",@"Replace toolbar done button text with provided image",@"Override toolbar done button text"],
                                        @[@"Override the keyboardAppearance for all UITextField/UITextView",@"All the UITextField keyboardAppearance is set using this property"],
                                        @[@"Resigns Keyboard on touching outside of UITextField/View"],
@@ -79,13 +79,6 @@
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
-- (void)preventShowingBottomBlankSpaceAction:(UISwitch *)sender
-{
-    [[IQKeyboardManager sharedManager] setPreventShowingBottomBlankSpace:sender.on];
-    
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-}
-
 /**  IQToolbar handling     */
 
 - (void)enableAutoToolbarAction:(UISwitch *)sender
@@ -100,7 +93,7 @@
     [[IQKeyboardManager sharedManager] setShouldToolbarUsesTextFieldTintColor:sender.on];
 }
 
-- (void)shouldShowTextFieldPlaceholder:(UISwitch *)sender
+- (void)shouldShowToolbarPlaceholder:(UISwitch *)sender
 {
     [[IQKeyboardManager sharedManager] setShouldShowToolbarPlaceholder:sender.on];
     
@@ -249,18 +242,6 @@
                     return cell;
                 }
                     break;
-                case 2:
-                {
-                    SwitchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SwitchTableViewCell class])];
-                    cell.switchEnable.enabled = YES;
-                    cell.labelTitle.text = keyboardManagerProperties[indexPath.section][indexPath.row];
-                    cell.labelSubtitle.text = keyboardManagerPropertyDetails[indexPath.section][indexPath.row];
-                    cell.switchEnable.on = [[IQKeyboardManager sharedManager] preventShowingBottomBlankSpace];
-                    [cell.switchEnable removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-                    [cell.switchEnable addTarget:self action:@selector(preventShowingBottomBlankSpaceAction:) forControlEvents:UIControlEventValueChanged];
-                    return cell;
-                }
-                    break;
             }
         }
             break;
@@ -310,7 +291,7 @@
                     cell.labelSubtitle.text = keyboardManagerPropertyDetails[indexPath.section][indexPath.row];
                     cell.switchEnable.on = [[IQKeyboardManager sharedManager] shouldShowToolbarPlaceholder];
                     [cell.switchEnable removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-                    [cell.switchEnable addTarget:self action:@selector(shouldShowTextFieldPlaceholder:) forControlEvents:UIControlEventValueChanged];
+                    [cell.switchEnable addTarget:self action:@selector(shouldShowToolbarPlaceholder:) forControlEvents:UIControlEventValueChanged];
                     return cell;
                 }
                     break;

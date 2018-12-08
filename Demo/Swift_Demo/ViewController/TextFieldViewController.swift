@@ -42,6 +42,8 @@ class TextFieldViewController: UIViewController, UITextViewDelegate, UIPopoverPr
         super.viewDidLoad()
         
         textView1.delegate = self
+
+        textView1.attributedPlaceholder = NSAttributedString(string: "Attributed string from code is supported too", attributes: [.foregroundColor: UIColor.red])
         
         textField3.keyboardToolbar.previousBarButton.setTarget(self, action: #selector(self.previousAction(_:)))
         textField3.keyboardToolbar.nextBarButton.setTarget(self, action: #selector(self.nextAction(_:)))
@@ -76,7 +78,7 @@ class TextFieldViewController: UIViewController, UITextViewDelegate, UIPopoverPr
         if (self.presentingViewController != nil)
         {
             buttonPush.isHidden = true
-            buttonPresent.setTitle("Dismiss", for:UIControlState())
+            buttonPresent.setTitle("Dismiss", for:.normal)
         }
     }
     
